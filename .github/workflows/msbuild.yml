@@ -31,6 +31,9 @@ jobs:
         submodules: recursive
         fetch-depth: 0
         ref: master
+        
+    - name: Create dummy version tag
+      run: git tag -f 4.0.0
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v3
