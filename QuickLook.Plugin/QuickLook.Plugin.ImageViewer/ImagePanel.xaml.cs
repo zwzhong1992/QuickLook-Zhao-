@@ -43,6 +43,13 @@ namespace QuickLook.Plugin.ImageViewer;
 
 public partial class ImagePanel : UserControl, INotifyPropertyChanged, IDisposable
 {
+    private double _rotationAngle = 0;
+
+    private void ButtonRotate_Click(object sender, RoutedEventArgs e)
+    {
+        _rotationAngle = (_rotationAngle + 90) % 360;
+        viewPanel.LayoutTransform = new System.Windows.Media.RotateTransform(_rotationAngle);
+    }
     private Visibility _backgroundVisibility = Visibility.Visible;
     private ContextObject _contextObject;
     private Point? _dragInitPos;
