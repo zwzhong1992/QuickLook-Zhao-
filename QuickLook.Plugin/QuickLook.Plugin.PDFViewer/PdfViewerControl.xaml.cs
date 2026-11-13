@@ -31,6 +31,17 @@ namespace QuickLook.Plugin.PDFViewer;
 
 public partial class PdfViewerControl : UserControl, INotifyPropertyChanged, IDisposable
 {
+    private double _pdfRotationAngle = 0;
+
+    private void ButtonRotatePdf_Click(object sender, RoutedEventArgs e)
+    {
+        _pdfRotationAngle = (_pdfRotationAngle + 90) % 360;
+        if (this.Content is System.Windows.FrameworkElement rootGrid && rootGrid.Parent == this)
+        {
+            // 直接对 PDF 页面列表容器进行 90 度旋转
+            pagePanel.LayoutTransform = new System.Windows.Media.RotateTransform(_pdfRotationAngle);
+        }
+    }
     private int _changePageDeltaSum;
     private bool _initPage = true;
     private double _maxZoomFactor = double.NaN;
